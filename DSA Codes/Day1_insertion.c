@@ -8,6 +8,7 @@ void display(int arr[], int size)
     }
     printf("\n");
 }
+
 int indInsertion(int arr[], int size, int capacity, int index, int element)
 {
     if(size >= capacity)
@@ -21,6 +22,7 @@ int indInsertion(int arr[], int size, int capacity, int index, int element)
     arr[index] = element;
     return 1;
 }
+
 int main()
 {
     int arr[50] = {5,19,1,30}, size=4, index=3, capacity, element = 25 ;
