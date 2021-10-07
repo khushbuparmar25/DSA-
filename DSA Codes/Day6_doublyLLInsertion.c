@@ -22,13 +22,45 @@ void doublyLLTraversal(struct Node * head)
 struct Node * insertAtFirst(struct node *head, int data)
 {
 	struct Node * ptr = (struct Node *)malloc(sizeof(struct Node));
+    ptr->next = head;
+    ptr->prev = NULL;
     ptr->data = data;
-	ptr->next = head;
-	ptr->prev=NULL;
-
-	head = ptr;
-	return head;
+    head = ptr;
+    return head;
 }
+
+struct Node * insertAtEnd(struct Node * head, int data)
+{
+    struct Node * ptr = (struct Node *)malloc(sizeof(struct Node));
+    struct Node * p = head;
+    while(p->next != NULL)
+    {
+        p = p->next;
+    }
+    ptr->data = data;
+    p->next = ptr;
+    ptr->prev = p;
+    ptr->next = NULL;
+    return head;
+};
+
+struct Node * insertAtIndex(struct Node * head, int data, int index)
+{
+    struct Node * ptr = (struct Node *)malloc(sizeof(struct Node));
+    struct Node * p = head;
+    int i=0;
+    while(i!=index-1)
+    {
+        p = p->next;
+        i++;
+    }
+    ptr->data = data;
+    ptr->prev = p;
+    ptr->next = p->next;
+    (p->next)->prev = ptr;
+    p->next = ptr;
+    return head;
+};
 
 int main()
 {
@@ -58,7 +90,9 @@ int main()
     printf("Doubly Linked list before insertion: \n");
     doublyLLTraversal(head);
 
-    head = insertAtFirst(head, 80);
+    //head = insertAtFirst(head, 80);
+    //head = insertAtEnd(head, 66);
+    head = insertAtIndex(head, 44, 1);
     printf("Doubly Linked list after insertion: \n");
     doublyLLTraversal(head);
 
