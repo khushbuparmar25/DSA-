@@ -40,6 +40,36 @@ struct Node * insertionAtFirst(struct Node *head, int data)
     return head;
 };
 
+struct Node * insertAtIndex(struct Node *head, int data, int index)
+{
+    struct Node * ptr = (struct Node *) malloc(sizeof(struct Node));
+    struct Node * p = head;
+    int i=0;
+    while(i!=index-1)
+    {
+        p = p->next;
+        i++;
+    }
+    ptr->data = data;
+    ptr->next = p->next;
+    p->next = ptr;
+    return head;
+};
+
+struct Node * insertAtEnd(struct Node *head, int data)
+{
+    struct Node * ptr = (struct Node *) malloc(sizeof(struct Node));
+    struct Node * p = head;
+    while(p->next != head)
+    {
+        p=p->next;
+    }
+    ptr->data = data;
+    p->next = ptr;
+    ptr->next = head;
+    return head;
+};
+
 int main()
 {
     struct Node * head;
@@ -67,7 +97,9 @@ int main()
     printf("Circular Linked list before insertion is: \n");
     circularLLTraversal(head);
 
-    head = insertionAtFirst(head, 50);
+    //head = insertionAtFirst(head, 50);
+    //head = insertAtIndex(head, 99, 1);
+    head = insertAtEnd(head, 100);
     printf("Circular Linked list after insertion is: \n");
     circularLLTraversal(head);
     return 0;
