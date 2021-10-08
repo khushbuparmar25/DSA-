@@ -30,7 +30,7 @@ struct Node * deletionAtFirst(struct Node * head)
 struct Node * deleteAtEnd(struct Node * head)
 {
     struct Node * ptr = head;
-    if(ptr->next != NULL)
+    while(ptr->next != NULL)
     {
         ptr = ptr->next;
     }
